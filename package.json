@@ -1,0 +1,13 @@
+{
+  "name": "cyclone-impact-forecaster-track5",
+  "version": "1.0.0",
+  "description": "AI-powered predictive risk and vulnerability modeling platform using Google Earth Engine and Gemini Multimodal reasoning.",
+  "scripts": {
+    "start": "npx serve public",
+    "deploy": "firebase deploy --only hosting"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}

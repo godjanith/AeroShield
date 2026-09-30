@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroShield - Cyclone Vulnerability Forecaster (Track 5)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-hurricane fa-spin-pulse"></i>
+      <div>
+        <h1>AeroShield AI</h1>
+        <span>Cyclone Impact & Infrastructure Forecaster &bull; Track 5</span>
+      </div>
+    </div>
+    <div class="status-badge live">
+      <span class="pulse-dot"></span> LIVE GEE & TELEMETRY STREAM: BAY OF BENGAL
+    </div>
+  </header>
+
+  <main class="dashboard-grid">
+    <!-- Left Column: Controls & Telemetry -->
+    <section class="card controls-panel">
+      <h2><i class="fa-solid fa-sliders"></i> Storm Telemetry & Simulation</h2>
+      
+      <div class="telemetry-box">
+        <div class="metric">
+          <span class="label">System Name</span>
+          <span class="value" id="storm-name">Severe Cyclone Remal</span>
+        </div>
+        <div class="metric">
+          <span class="label">Max Sustained Wind</span>
+          <span class="value" id="wind-speed">165 km/h</span>
+        </div>
+        <div class="metric">
+          <span class="label">Central Pressure</span>
+          <span class="value" id="pressure">958 hPa</span>
+        </div>
+        <div class="metric">
+          <span class="label">Projected Landfall</span>
+          <span class="value alert" id="landfall">T - 04h : 22m</span>
+        </div>
+      </div>
+
+      <div class="slider-group">
+        <label for="surgeSlider">Simulated Storm Surge Height: <strong id="surgeVal">3.8 m</strong></label>
+        <input type="range" id="surgeSlider" min="1.0" max="6.5" step="0.1" value="3.8">
+      </div>
+
+      <div class="slider-group">
+        <label for="rainfallSlider">Rainfall Accumulation Rate: <strong id="rainVal">45 mm/hr</strong></label>
+        <input type="range" id="rainfallSlider" min="10" max="120" step="5" value="45">
+      </div>
+
+      <div class="api-key-container">
+        <label for="geminiKey">Gemini API Key (Optional for Custom Model Runs):</label>
+        <input type="password" id="geminiKey" placeholder="Enter key or leave empty to use built-in engine">
+      </div>
+
+      <button id="runAiBtn" class="btn primary-btn">
+        <i class="fa-solid fa-microchip"></i> Run Gemini 2.5 Flash Multimodal Risk Assessment
+      </button>
+
+      <div class="quick-deploy-info">
+        <button id="showDeployModal" class="btn secondary-btn">
+          <i class="fa-solid fa-cloud-arrow-up"></i> Deploy to Firebase & GitHub Guide
+        </button>
+      </div>
+    </section>
+
+    <!-- Center Column: Radar Map & GIS Simulation -->
+    <section class="card map-panel">
+      <div class="map-header">
+        <h2><i class="fa-solid fa-earth-asia"></i> Geospatial Inundation & Infrastructure Exposure Map</h2>
+        <div class="map-modes">
+          <button class="mode-btn active" data-mode="radar">Doppler Radar</button>
+          <button class="mode-btn" data-mode="surge">Surge Depth Contour</button>
+          <button class="mode-btn" data-mode="satellite">Google Earth Engine Tile</button>
+        </div>
+      </div>
+      
+      <div class="canvas-container">
+        <canvas id="gisCanvas" width="700" height="520"></canvas>
+        <div class="map-legend">
+          <span><span class="dot red"></span> Critical Inundation</span>
+          <span><span class="dot orange"></span> Moderate Risk</span>
+          <span><span class="dot green"></span> Safe Operational Hub</span>
+          <span><span class="dot cyan"></span> Arterial Roads (NH-16)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Infrastructure Exposure & Advisory Dispatches -->
+    <section class="card reports-panel">
+      <h2><i class="fa-solid fa-triangle-exclamation"></i> Critical Infrastructure Exposure</h2>
+      <div class="asset-list" id="assetList">
+        <!-- Dynamically injected assets -->
+      </div>
+
+      <h2 style="margin-top: 20px;"><i class="fa-solid fa-bullhorn"></i> Municipal & Disaster Dispatches</h2>
+      <div class="dispatch-container" id="dispatchContainer">
+        <div class="dispatch-card critical">
+          <div class="dispatch-head">
+            <span class="badge red">NDMA HIGH ADVISORY</span>
+            <span class="time">JUST NOW</span>
+          </div>
+          <h3>Urgent Evacuation of Low-Lying Coastal Sectors</h3>
+          <p>Storm surge projections indicate 3.8m breach along Paradip-Dhamra coastal belt. High risk of electrical substation Alpha failure. Shift populace to Inland Shelter 04 immediately.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Deployment Modal -->
+  <div id="deployModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2>🚀 Deploying to GitHub & Firebase in 3 Steps</h2>
+      <div class="code-block">
+        <p><strong>1. Initialize Git & Push to GitHub:</strong></p>
+        <pre>git init
+git add .
+git commit -m "feat: Cyclone Impact Forecaster Prototype"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/cyclone-forecaster.git
+git push -u origin main</pre>
+
+        <p><strong>2. Test Locally with Firebase:</strong></p>
+        <pre>npm install -g firebase-tools
+firebase login
+firebase init hosting
+# (Select existing project or create new; set public directory as 'public')</pre>
+
+        <p><strong>3. Deploy Live Instantly:</strong></p>
+        <pre>firebase deploy --only hosting</pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
